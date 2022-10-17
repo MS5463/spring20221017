@@ -11,14 +11,20 @@ public class App {
 		
 		String name1 = j1.getName();
 		
-		JavaBean j2 = new JavaBean2();
+		JavaBean2 j2 = new JavaBean2();
 		
 		j2.setCompany("tesla");
 		j2.setLocation("usa");
 		j2.setScore(300);
+		
+		String company2 = j2.getCompany();
 		int score2 = j2.getScore();
-		p
+		String location2 = j2.getLocation();
 		
 		JavaBean4 j4 = new JavaBean4();
+		j4.setAddress("korea");
+		j4.setScore(500);
+		
+		System.out.println(j4.toString());
 	}
 }

@@ -2,7 +2,6 @@ package lecture.p01lombok;
 
 import lombok.Data;
 
-
 @Data // 아래 5개의 어노테이션을 한번에 적용함
 //@ToString
 //@EqualsAndHashCode
@@ -11,5 +10,5 @@ import lombok.Data;
 //@RequiredArgsConstructor
 public class JavaBean5 {
 	private String name;
-	private int score;
+	private int age;
 }
