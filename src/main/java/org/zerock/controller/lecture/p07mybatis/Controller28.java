@@ -18,4 +18,48 @@ public class Controller28 {
 		String time = mapper.getCurrentTime();
 		System.out.println(time);
 	}
+	
+	@RequestMapping("sub02")
+	public void method02() {
+		System.out.println(mapper.getCustomerName());
+	}
+	
+	@RequestMapping("sub03")
+	public void method03() {
+		System.out.println(mapper.getEmployeeName());
+	}
+	
+	@RequestMapping("sub04")
+	public void method04() {
+		System.out.println(mapper.getProductName());
+	}
+	
+	@RequestMapping("sub05")
+	public void method05() {
+		System.out.println(mapper.getPrice());
+	}
+	
+	@RequestMapping("sub06")
+	public void method06() {
+		System.out.println(mapper.getQuantity());
+	}
+	
+	@RequestMapping("sub07")
+	public void method07() {
+		System.out.println(mapper.getBirthDate());
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
