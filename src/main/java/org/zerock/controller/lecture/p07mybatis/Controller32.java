@@ -1,15 +1,11 @@
 package org.zerock.controller.lecture.p07mybatis;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.zerock.domain.lecture.JavaBean06;
 import org.zerock.domain.lecture.JavaBean07;
 import org.zerock.domain.lecture.JavaBean08;
 import org.zerock.domain.lecture.JavaBean09;
-import org.zerock.mapper.lecture.Mapper04;
 import org.zerock.mapper.lecture.Mapper05;
 
 @Controller
@@ -38,6 +34,6 @@ public class Controller32 {
 		System.out.println(product.getPrice()); // 31.00
 		System.out.println(product.getSupplier().getId()); // 4
 		System.out.println(product.getSupplier().getName()); // Tokyo Traders
-		System.out.println(product.getSupplier().getPhone); // (03) 3555-5011
+		System.out.println(product.getSupplier().getPhone()); // (03) 3555-5011
 	}
 }
