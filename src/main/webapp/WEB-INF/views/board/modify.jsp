@@ -16,14 +16,14 @@
 		<div class="row">
 			<div class="col">
 
-				<h1>${board.id}번 게시물 수정</h1>
+				<h1>${board.id }번 게시물 수정</h1>
 				
 				<form id="modifyForm" action="" method="post">
-					<input type="hidden" name="id" value="${board.id}">
+					<input type="hidden" name="id" value="${board.id }">
 					<!-- .mb-3*4>label.form-label+input.form-control -->
 					<div class="mb-3">
 						<label for="" class="form-label">제목</label>
-						<input type="text" name="title" class="form-control" value="${board.title}">
+						<input type="text" name="title" class="form-control" value="${board.title }">
 					</div>
 					<div class="mb-3">
 						<label for="" class="form-label">본문</label>
@@ -31,19 +31,19 @@
 					</div>
 					<div class="mb-3">
 						<label for="" class="form-label">작성자</label>
-						<input type="text" name="writer" class="form-control" value="${board.writer}">
+						<input type="text" name="writer" class="form-control" value="${board.writer }">
 					</div>
 					<div class="mb-3">
 						<label for="" class="form-label">작성일시</label>
-						<input type="text" class="form-control" value="${board.inserted}" readonly>
+						<input type="text" class="form-control" value="${board.inserted }" readonly>
 					</div>
 				</form>
 				<input class="btn btn-warning" type="submit" value="수정" data-bs-toggle="modal" data-bs-target="#modifyModal">
 				<c:url value="/board/remove" var="removeLink"/>
 				<input class="btn btn-danger" type="submit" value="삭제" data-bs-toggle="modal" data-bs-target="#removeModal">
 				
-				<form id="removeForm" action="${removeLink}" method="post">
-				<input type="hidden" name="id" value="${board.id}">
+				<form id="removeForm" action="${removeLink }" method="post">
+				<input type="hidden" name="id" value="${board.id }">
 				</form>
 
 			</div>
@@ -87,10 +87,18 @@
 	    </div>
 	  </div>
 	</div>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <script>
+	// 수정확인 버튼 클릭하면 수정 form 전송
 	document.querySelector("#modifyConfirmButton").addEventListener("click", function() {
 		document.querySelector("#modifyForm").submit();
+	});
+	
+	// 삭제확인 버튼 클릭하면 삭제 form 전송
+	document.querySelector("#removeConfirmButton").addEventListener("click", function() {
+		document.querySelector("#removeForm").submit();
 	});
 </script>
 </body>
