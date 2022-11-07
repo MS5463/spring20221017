@@ -26,7 +26,8 @@
 	<insert id="insert">
 	INSERT INTO Board (title, content, writer)
 	VALUES (#{title}, #{content}, #{writer})
-	</insert> 
+	
+	</insert>
 	
 	<select id="list" resultType="org.zerock.domain.board.BoardDto">
 	SELECT 
@@ -36,7 +37,7 @@
 		inserted
 	FROM Board
 	WHERE
-	
+		
 		<trim prefixOverrides="OR">
 			<if test="type == 'all' or type == 'title'">
 			OR title LIKE #{keyword}
@@ -50,19 +51,19 @@
 			OR writer LIKE #{keyword}
 			</if>
 		</trim>
-		
+	
 	ORDER BY id DESC
 	LIMIT #{offset}, #{records}
 	</select>
 	
 	<select id="select" resultType="org.zerock.domain.board.BoardDto">
-	SELECT 
+	SELECT
 		id,
 		title,
 		content,
 		writer,
 		inserted
-	FROM 
+	FROM
 		Board
 	WHERE
 		id = #{id}
@@ -71,10 +72,10 @@
 	<update id="update">
 	UPDATE Board
 	SET
-		title = #{title}
-		content = #{content}
+		title = #{title},
+		content = #{content},
 		writer = #{writer}
-	WHERE 
+	WHERE
 		id = #{id}
 	</update>
 	
@@ -82,7 +83,7 @@
 	DELETE FROM Board
 	WHERE id = #{id}
 	</delete>
-	
+
 </mapper>
 
 
