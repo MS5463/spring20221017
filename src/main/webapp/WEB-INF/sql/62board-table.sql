@@ -107,6 +107,32 @@ SELECT * FROM File ORDER BY 1 DESC;
     GROUP BY b.id
 	ORDER BY b.id DESC;
 
+-- Member Table 만들기
+CREATE TABLE Member (
+	id VARCHAR(255) PRIMARY KEY,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    inserted DATETIME DEFAULT NOW()
+);
+
+-- 회원가입 확인
+SELECT * FROM Member ORDER BY inserted DESC;
+DESC Member;
+
+SELECT 
+		id,
+		'숨김' password,
+		email,
+		inserted
+	FROM
+		Member
+	ORDER BY
+		id ;
+
+
+
+
+
 
 
 
