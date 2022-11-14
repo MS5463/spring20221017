@@ -12,19 +12,22 @@ public class MemberService {
 	
 	@Autowired
 	private MemberMapper mapper;
-	
+
 	public int insert(MemberDto member) {
+		
 		return mapper.insert(member);
 	}
 
 	public List<MemberDto> list() {
+		// TODO Auto-generated method stub
 		return mapper.selectAll();
 	}
-	
+
 	public MemberDto getById(String id) {
+		// TODO Auto-generated method stub
 		return mapper.selectById(id);
 	}
-	
+
 	public int modify(MemberDto member) {
 		int cnt = 0;
 		
@@ -34,10 +37,16 @@ public class MemberService {
 			e.printStackTrace();
 		}
 		
-		return cnt;
+		return cnt; 
 	}
-	
+
 	public int remove(String id) {
 		return mapper.deleteById(id);
 	}
+
+	public MemberDto getByEmail(String email) {
+		// TODO Auto-generated method stub
+		return mapper.selectByEmail(email);
+	}
+
 }
