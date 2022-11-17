@@ -107,21 +107,21 @@ SELECT * FROM File ORDER BY 1 DESC;
     GROUP BY b.id
 	ORDER BY b.id DESC;
 
--- Member Table 만들기
+
+-- Member 테이블 만들기
 CREATE TABLE Member (
 	id VARCHAR(255) PRIMARY KEY,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     inserted DATETIME DEFAULT NOW()
 );
-
--- 회원가입 확인
-SELECT * FROM Member ORDER BY inserted DESC;
 DESC Member;
+
+SELECT * FROM Member ORDER BY inserted DESC;
 
 SELECT 
 		id,
-		'숨김' password,
+		password,
 		email,
 		inserted
 	FROM
@@ -130,7 +130,7 @@ SELECT
 		id ;
 
 
--- Member Table에 nickName 컬럼 추가
+-- Member 테이블에 nickName 컬럼 추가
 ALTER TABLE Member
 ADD COLUMN nickName VARCHAR(255) NOT NULL UNIQUE DEFAULT id AFTER id;
 
@@ -153,7 +153,55 @@ WHERE
 ALTER TABLE Board
 ADD FOREIGN KEY (writer) REFERENCES Member(id);
 
+-- 댓글 테이블에 작성자 추가
+ALTER TABLE Reply
+ADD COLUMN writer VARCHAR(255) NOT NULL DEFAULT 'aa' REFERENCES Member(id) AFTER content;
+ALTER TABLE Reply
+MODIFY COLUMN writer VARCHAR(255) NOT NULL;
+DESC Reply;
+
+SELECT * FROM Reply ORDER BY 1 DESC;
+
+-- 댓글이 수정 가능한 지 확인
+SELECT 
+		id,
+		boardId,
+		content,
+		writer,
+		(writer = 'bb') editable,
+		inserted
+	FROM
+		Reply
+	WHERE
+		boardId = 1064
+	ORDER BY
+		id DESC
 
 
+-- 좋아요 테이블 만들기
+CREATE TABLE BoardLike (
+	boardId INT,
+    memberId VARCHAR(255),
+    PRIMARY KEY (boardId, memberId),
+    FOREIGN KEY (boardId) REFERENCES Board(id),
+    FOREIGN KEY (memberId) REFERENCES Member(id)
+);
 
+SELECT * FROM BoardLike;
+
+-- 좋아요 갯수, 좋아요 여부 포함된 게시물 조회
+SELECT
+		b.id,
+		b.title,
+		b.content,
+		b.writer,
+		b.inserted,
+		-- COUNT(distinct l.memberId) countLike,
+		f.id fileId,
+		f.name fileName
+	FROM
+		Board b LEFT JOIN File f ON b.id = f.boardId
+		        LEFT JOIN BoardLike l ON b.id = l.boardId
+	WHERE
+		b.id = 1064;
 
