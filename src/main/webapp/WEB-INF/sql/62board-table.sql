@@ -177,7 +177,7 @@ SELECT
 	ORDER BY
 		id DESC
 
-
+;
 -- 좋아요 테이블 만들기
 CREATE TABLE BoardLike (
 	boardId INT,
@@ -196,12 +196,52 @@ SELECT
 		b.content,
 		b.writer,
 		b.inserted,
-		-- COUNT(distinct l.memberId) countLike,
+		(SELECT COUNT(*) FROM BoardLike WHERE boardId = b.id) countLike,
 		f.id fileId,
 		f.name fileName
 	FROM
 		Board b LEFT JOIN File f ON b.id = f.boardId
-		        LEFT JOIN BoardLike l ON b.id = l.boardId
 	WHERE
 		b.id = 1064;
+
+-- 권한테이블 만들기
+CREATE TABLE Authority (
+	memberId VARCHAR(255) NOT NULL REFERENCES Member(id),
+    auth VARCHAR(255) NOT NULL,
+    PRIMARY KEY (memberId, auth)
+);
+
+INSERT INTO Authority (memberId, auth)
+VALUES ('admin', 'admin');
+
+SELECT * FROM Authority;
+
+-- 권한테이블, 멤버테이블 조인 조회
+	SELECT 
+		id,
+		nickName,
+		password,
+		email,
+		inserted,
+        a.auth
+	FROM
+		Member m LEFT JOIN Authority a ON m.id = a.memberId
+	WHERE
+		id = 'admin';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
